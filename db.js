@@ -7,14 +7,44 @@ const getAllMetas = () => ({
         "background": "http://127.0.0.1:7000/assets/background.png",
         "logo": "http://127.0.0.1:7000/assets/logo.png",
         "description": "Pen test movie 1 description",
-        "release_info": "2019-",
+        "releaseInfo": "2019-",
         "runtime": "10:00",
         "released": "2019-11-08T07:57:48.271Z",
-        "imdb_rating": "8.0",
-        "poster_shape": "square",
+        "posterShape": "square",
+        "externalUrls": [
+            {
+                "name": "Squirrel",
+                "category": "actors",
+                "url": "stremio:///search?q=Squirrel"
+            },
+            {
+                "name": "Big Bunny",
+                "category": "actors",
+                "url": "stremio:///search?q=Big%20Bunny"
+            },
+            {
+                "name": "Sacha Goedegebure",
+                "category": "directors",
+                "url": "stremio:///search?q=Sacha%20Goedegebure"
+            },
+            {
+                "name": "Sacha Goedegebure",
+                "category": "writers",
+                "url": "stremio:///search?q=Sacha%20Goedegebure"
+            },
+            {
+                "name": "6.5 / 10",
+                "category": "imdb",
+                "url": "https://www.imdb.com/title/tt1254207"
+            },
+            {
+                "name": "Official website",
+                "category": "other",
+                "url": "https://peach.blender.org/"
+            }
+        ],
         "videoIds": ["npt1v1"],
-        "external_urls": [],
-        "trailerId": "npt1t1"
+        "trailerId": "npt1t1",
     }
 });
 
@@ -24,7 +54,7 @@ const getAllVideos = () => ({
         "title": "Pen test movie 1 video 1",
         "thumbnail": "http://127.0.0.1:7000/assets/poster.jpg",
         "released": "2019-11-08T07:57:48.271Z",
-        "overview": "Pen test movie 1 video 1 description",
+        "overview": "Pen test movie 1 video 1 overview",
         "streamIds": ["npt1v1s1"]
     }
 });
