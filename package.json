@@ -1,0 +1,9 @@
+{
+    "name": "stremio-pentest-addon",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "dependencies": {
+        "stremio-addon-sdk": "1.4.0"
+    }
+}
