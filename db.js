@@ -21,10 +21,10 @@ const getAllMetas = () => ({
 const getAllVideos = () => ({
     "npt1v1": {
         "id": "npt1v1",
-        "name": "Pen test movie 1 video 1",
-        "poster": "http://127.0.0.1:7000/assets/poster.jpg",
+        "title": "Pen test movie 1 video 1",
+        "thumbnail": "http://127.0.0.1:7000/assets/poster.jpg",
         "released": "2019-11-08T07:57:48.271Z",
-        "description": "Pen test movie 1 video 1 description",
+        "overview": "Pen test movie 1 video 1 description",
         "streamIds": ["npt1v1s1"]
     }
 });
@@ -32,14 +32,14 @@ const getAllVideos = () => ({
 const getAllStreams = () => ({
     "npt1v1s1": {
         "id": "npt1v1s1",
-        "name": "Pen test movie 1 video 1 stream 1",
-        "poster": "http://127.0.0.1:7000/assets/poster.jpg",
+        "title": "Pen test movie 1 video 1 stream 1",
+        "thumbnail": "http://127.0.0.1:7000/assets/poster.jpg",
         "url": "http://127.0.0.1:7000/assets/video.mp4"
     },
     "npt1t1": {
         "id": "npt1t1",
-        "name": "Pen test movie 1 trailer 1",
-        "poster": "http://127.0.0.1:7000/assets/poster.jpg",
+        "title": "Pen test movie 1 trailer 1",
+        "thumbnail": "http://127.0.0.1:7000/assets/poster.jpg",
         "url": "http://127.0.0.1:7000/assets/video.mp4"
     }
 });
