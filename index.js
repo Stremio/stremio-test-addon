@@ -12,10 +12,21 @@ const addon = new AddonBuilder({
     idPrefixes: ['pt']
 });
 
+const argv = process.argv.slice(2);
+const maxRequestDelay = argv.includes('--delay') ?
+    parseInt(argv[argv.indexOf('--delay') + 1])
+    :
+    1000;
+
 addon.defineMetaHandler(({ type, id }) => {
     const meta = getMeta(type, id);
     if (meta) {
-        return Promise.resolve({ meta });
+        return new Promise((resolve) => {
+            const delay = Math.random() * maxRequestDelay;
+            setTimeout(() => {
+                resolve({ meta });
+            }, delay);
+        });
     }
 
     return Promise.resolve({ meta: {} });
@@ -24,7 +35,12 @@ addon.defineMetaHandler(({ type, id }) => {
 addon.defineStreamHandler(({ type, id }) => {
     const streams = getStreams(type, id);
     if (streams) {
-        return Promise.resolve({ streams });
+        return new Promise((resolve) => {
+            const delay = Math.random() * maxRequestDelay;
+            setTimeout(() => {
+                resolve({ streams });
+            }, delay);
+        });
     }
 
     return Promise.resolve({ streams: [] });
