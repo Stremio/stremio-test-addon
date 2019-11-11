@@ -3,8 +3,9 @@ const { getMeta, getStreams } = require('./db');
 
 const addon = new AddonBuilder({
     id: 'com.stremio.ptaddon',
-    version: '1.0.0',
     name: 'Stremio\'s pen test addon',
+    description: 'Addon for pentest the stremio addons system',
+    version: '1.0.0',
     resources: ['meta', 'stream'],
     types: ['movie'],
     catalogs: [],
