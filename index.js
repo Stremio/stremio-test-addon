@@ -1,4 +1,4 @@
-const { addonBuilder: AddonBuilder, serveHTTP } = require('stremio-addon-sdk');
+const { addonBuilder: AddonBuilder, serveHTTP: startHttpServer } = require('stremio-addon-sdk');
 const { getMeta, getStreams } = require('./db');
 
 const addon = new AddonBuilder({
@@ -31,7 +31,7 @@ addon.defineStreamHandler(({ type, id }) => {
 });
 
 for (const port of [7000, 7001, 7002, 7003, 7004]) {
-    serveHTTP(addon.getInterface(), {
+    startHttpServer(addon.getInterface(), {
         port,
         static: '/assets'
     });
