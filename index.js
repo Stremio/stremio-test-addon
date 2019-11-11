@@ -2,9 +2,9 @@ const { addonBuilder: AddonBuilder, serveHTTP } = require('stremio-addon-sdk');
 const { getMeta, getStreams } = require('./db');
 
 const addon = new AddonBuilder({
-    id: 'com.stellarscript.ptstremio',
+    id: 'com.stremio.ptaddon',
     version: '1.0.0',
-    name: 'Nikola\'s pen test addon',
+    name: 'Stremio\'s pen test addon',
     resources: ['meta', 'stream'],
     types: ['movie'],
     catalogs: [],
