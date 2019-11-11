@@ -17,33 +17,40 @@ const maxRequestDelay = argv.includes('--delay') ?
     parseInt(argv[argv.indexOf('--delay') + 1])
     :
     1000;
+const errorChance = argv.includes('--error') ?
+    parseFloat(argv[argv.indexOf('--error') + 1])
+    :
+    0;
+const getHandlerResult = (response) => {
+    return new Promise((resolve, reject) => {
+        const delay = Math.random() * maxRequestDelay;
+        setTimeout(() => {
+            const error = Math.random() <= errorChance;
+            if (error) {
+                reject();
+            } else {
+                resolve(response);
+            }
+        }, delay);
+    });
+};
 
 addon.defineMetaHandler(({ type, id }) => {
     const meta = getMeta(type, id);
     if (meta) {
-        return new Promise((resolve) => {
-            const delay = Math.random() * maxRequestDelay;
-            setTimeout(() => {
-                resolve({ meta });
-            }, delay);
-        });
+        return getHandlerResult({ meta });
     }
 
-    return Promise.resolve({ meta: {} });
+    return Promise.reject();
 });
 
 addon.defineStreamHandler(({ type, id }) => {
     const streams = getStreams(type, id);
     if (streams) {
-        return new Promise((resolve) => {
-            const delay = Math.random() * maxRequestDelay;
-            setTimeout(() => {
-                resolve({ streams });
-            }, delay);
-        });
+        return getHandlerResult({ streams });
     }
 
-    return Promise.resolve({ streams: [] });
+    return Promise.reject();
 });
 
 for (const port of [7000, 7001, 7002, 7003, 7004]) {
