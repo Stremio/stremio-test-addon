@@ -9,7 +9,7 @@ const addon = new AddonBuilder({
     resources: ['meta', 'stream'],
     types: ['movie'],
     catalogs: [],
-    idPrefixes: ['npt']
+    idPrefixes: ['pt']
 });
 
 addon.defineMetaHandler(({ type, id }) => {

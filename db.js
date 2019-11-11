@@ -1,6 +1,6 @@
 const getAllMetas = () => ({
-    "npt1": {
-        "id": "npt1",
+    "pt1": {
+        "id": "pt1",
         "type": "movie",
         "name": "Pen test movie 1",
         "poster": "http://127.0.0.1:7000/assets/poster.jpg",
@@ -43,31 +43,58 @@ const getAllMetas = () => ({
                 "url": "https://peach.blender.org/"
             }
         ],
-        "videoIds": ["npt1v1"],
-        "trailerId": "npt1t1",
+        "videoIds": ["pt1v1", "pt1v2", "pt1v3"],
+        "trailerId": "pt1t1",
     }
 });
 
 const getAllVideos = () => ({
-    "npt1v1": {
-        "id": "npt1v1",
+    "pt1v1": {
+        "id": "pt1v1",
         "title": "Pen test movie 1 video 1",
         "thumbnail": "http://127.0.0.1:7000/assets/poster.jpg",
         "released": "2019-11-08T07:57:48.271Z",
         "overview": "Pen test movie 1 video 1 overview",
-        "streamIds": ["npt1v1s1"]
+        "streamIds": ["pt1v1s1"]
+    },
+    "pt1v2": {
+        "id": "pt1v2",
+        "title": "Pen test movie 1 video 2",
+        "thumbnail": "http://127.0.0.1:7000/assets/non-existing-thumbnail.jpg",
+        "released": "3333-11-08T07:57:48.271Z",
+        "overview": "Pen test movie 1 video 2 (broken thumbnail)",
+        "streamIds": ["pt1v2s1"]
+    },
+    "pt1v3": {
+        "id": "pt1v3",
+        "title": "Pen test movie 1 video 3",
+        "released": "2019-11-08T07:57:48.271Z",
+        "overview": "Pen test movie 1 video 3 (no thumbnail)",
+        "streamIds": ["pt1v3s1"]
     }
 });
 
 const getAllStreams = () => ({
-    "npt1v1s1": {
-        "id": "npt1v1s1",
+    "pt1v1s1": {
+        "id": "pt1v1s1",
         "title": "Pen test movie 1 video 1 stream 1",
         "thumbnail": "http://127.0.0.1:7000/assets/poster.jpg",
         "url": "http://127.0.0.1:7000/assets/video.mp4"
     },
-    "npt1t1": {
-        "id": "npt1t1",
+    "pt1v2s1": {
+        "id": "pt1v2s1",
+        "title": "Pen test movie 1 video 2 stream 1",
+        "thumbnail": "http://127.0.0.1:7000/assets/poster.jpg",
+        "url": "http://127.0.0.1:7000/assets/video.mp4"
+    },
+    "pt1v3s1": {
+        "id": "pt1v3s1",
+        "title": "Pen test movie 1 video 3 stream 1",
+        "thumbnail": "http://127.0.0.1:7000/assets/poster.jpg",
+        "url": "http://127.0.0.1:7000/assets/video.mp4"
+    },
+    "pt1t1": {
+        "id": "pt1t1",
         "title": "Pen test movie 1 trailer 1",
         "thumbnail": "http://127.0.0.1:7000/assets/poster.jpg",
         "url": "http://127.0.0.1:7000/assets/video.mp4"
