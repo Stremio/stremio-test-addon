@@ -30,7 +30,9 @@ addon.defineStreamHandler(({ type, id }) => {
     return Promise.resolve({ streams: [] });
 });
 
-serveHTTP(addon.getInterface(), {
-    port: 7000,
-    static: '/assets'
-});
+for (const port of [7000, 7001, 7002, 7003, 7004]) {
+    serveHTTP(addon.getInterface(), {
+        port,
+        static: '/assets'
+    });
+}
