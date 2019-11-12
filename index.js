@@ -1,18 +1,11 @@
 const { addonBuilder: AddonBuilder, serveHTTP: startHttpServer } = require('stremio-addon-sdk');
-const { getMeta, getStreams } = require('./db');
-
-const addon = new AddonBuilder({
-    id: 'com.stremio.ptaddon',
-    name: 'Stremio\'s pen test addon',
-    description: 'Addon for pentest the stremio addons system',
-    version: '1.0.0',
-    resources: ['meta', 'stream'],
-    types: ['movie'],
-    catalogs: [],
-    idPrefixes: ['pt']
-});
+const DbContext = require('./db');
 
 const argv = process.argv.slice(2);
+const port = argv.includes('--port') ?
+    parseInt(argv[argv.indexOf('--port') + 1])
+    :
+    7000;
 const maxRequestDelay = argv.includes('--delay') ?
     parseInt(argv[argv.indexOf('--delay') + 1])
     :
@@ -35,8 +28,20 @@ const getHandlerResult = (response) => {
     });
 };
 
+const db = new DbContext(port);
+const addon = new AddonBuilder({
+    id: 'com.stremio.ptaddon',
+    name: 'Stremio\'s pen test addon',
+    description: 'Addon for pentest the stremio addons system',
+    version: '1.0.0',
+    resources: ['meta', 'stream'],
+    types: ['movie'],
+    catalogs: [],
+    idPrefixes: ['pt']
+});
+
 addon.defineMetaHandler(({ type, id }) => {
-    const meta = getMeta(type, id);
+    const meta = db.getMeta(type, id);
     if (meta) {
         return getHandlerResult({ meta });
     }
@@ -45,7 +50,7 @@ addon.defineMetaHandler(({ type, id }) => {
 });
 
 addon.defineStreamHandler(({ type, id }) => {
-    const streams = getStreams(type, id);
+    const streams = db.getStreams(type, id);
     if (streams) {
         return getHandlerResult({ streams });
     }
@@ -53,9 +58,7 @@ addon.defineStreamHandler(({ type, id }) => {
     return Promise.reject();
 });
 
-for (const port of [7000, 7001, 7002, 7003, 7004]) {
-    startHttpServer(addon.getInterface(), {
-        port,
-        static: '/assets'
-    });
-}
+startHttpServer(addon.getInterface(), {
+    port,
+    static: '/assets'
+});

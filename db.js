@@ -1,11 +1,11 @@
-const getAllMetas = () => ({
+const pullAllMetas = (port) => ({
     "pt1": {
         "id": "pt1",
         "type": "movie",
         "name": "Pen test movie 1",
-        "poster": "http://127.0.0.1:7000/assets/poster.jpg",
-        "background": "http://127.0.0.1:7000/assets/background.png",
-        "logo": "http://127.0.0.1:7000/assets/logo.png",
+        "poster": `http://127.0.0.1:${port}/assets/poster.jpg`,
+        "background": `http://127.0.0.1:${port}/assets/background.png`,
+        "logo": `http://127.0.0.1:${port}/assets/logo.png`,
         "description": "Pen test movie 1 description",
         "releaseInfo": "2019-",
         "runtime": "10:00",
@@ -48,11 +48,11 @@ const getAllMetas = () => ({
     }
 });
 
-const getAllVideos = () => ({
+const pullAllVideos = (port) => ({
     "pt1v1": {
         "id": "pt1v1",
         "title": "Pen test movie 1 video 1",
-        "thumbnail": "http://127.0.0.1:7000/assets/poster.jpg",
+        "thumbnail": `http://127.0.0.1:${port}/assets/poster.jpg`,
         "released": "2019-11-08T07:57:48.271Z",
         "overview": "Pen test movie 1 video 1 overview",
         "streamIds": ["pt1v1s1"]
@@ -60,7 +60,7 @@ const getAllVideos = () => ({
     "pt1v2": {
         "id": "pt1v2",
         "title": "Pen test movie 1 video 2",
-        "thumbnail": "http://127.0.0.1:7000/assets/non-existing-thumbnail.jpg",
+        "thumbnail": `http://127.0.0.1:${port}/assets/non-existing-thumbnail.jpg`,
         "released": "3333-11-08T07:57:48.271Z",
         "overview": "Pen test movie 1 video 2 (broken thumbnail)",
         "streamIds": ["pt1v2s1"]
@@ -74,72 +74,76 @@ const getAllVideos = () => ({
     }
 });
 
-const getAllStreams = () => ({
+const pullAllStreams = (port) => ({
     "pt1v1s1": {
         "id": "pt1v1s1",
         "title": "Pen test movie 1 video 1 stream 1",
-        "thumbnail": "http://127.0.0.1:7000/assets/poster.jpg",
-        "url": "http://127.0.0.1:7000/assets/video.mp4"
+        "thumbnail": `http://127.0.0.1:${port}/assets/poster.jpg`,
+        "url": `http://127.0.0.1:${port}/assets/video.mp4`
     },
     "pt1v2s1": {
         "id": "pt1v2s1",
         "title": "Pen test movie 1 video 2 stream 1",
-        "thumbnail": "http://127.0.0.1:7000/assets/poster.jpg",
-        "url": "http://127.0.0.1:7000/assets/video.mp4"
+        "thumbnail": `http://127.0.0.1:${port}/assets/poster.jpg`,
+        "url": `http://127.0.0.1:${port}/assets/video.mp4`
     },
     "pt1v3s1": {
         "id": "pt1v3s1",
         "title": "Pen test movie 1 video 3 stream 1",
-        "thumbnail": "http://127.0.0.1:7000/assets/poster.jpg",
-        "url": "http://127.0.0.1:7000/assets/video.mp4"
+        "thumbnail": `http://127.0.0.1:${port}/assets/poster.jpg`,
+        "url": `http://127.0.0.1:${port}/assets/video.mp4`
     },
     "pt1t1": {
         "id": "pt1t1",
         "title": "Pen test movie 1 trailer 1",
-        "thumbnail": "http://127.0.0.1:7000/assets/poster.jpg",
-        "url": "http://127.0.0.1:7000/assets/video.mp4"
+        "thumbnail": `http://127.0.0.1:${port}/assets/poster.jpg`,
+        "url": `http://127.0.0.1:${port}/assets/video.mp4`
     }
 });
 
-const getMeta = (type, metaId) => {
-    const metas = getAllMetas();
-    const videos = getAllVideos();
-    const streams = getAllStreams();
-    const meta = Object.values(metas).find((meta) => {
-        return meta.id === metaId && meta.type === type;
-    });
-    if (meta) {
-        meta.videos = meta.videoIds.map((videoId) => {
-            const video = videos[videoId];
-            video.streams = video.streamIds.map((streamId) => streams[streamId]);
-            delete video.streamIds;
-            return video;
+function DbContext(port) {
+    const self = this;
+
+    const getMeta = (type, metaId) => {
+        const metas = pullAllMetas(port);
+        const videos = pullAllVideos(port);
+        const streams = pullAllStreams(port);
+        const meta = Object.values(metas).find((meta) => {
+            return meta.id === metaId && meta.type === type;
         });
-        meta.trailer = streams[meta.trailerId];
-        delete meta.videoIds;
-        delete meta.trailerId;
-    }
+        if (meta) {
+            meta.videos = meta.videoIds.map((videoId) => {
+                const video = videos[videoId];
+                video.streams = video.streamIds.map((streamId) => streams[streamId]);
+                delete video.streamIds;
+                return video;
+            });
+            meta.trailer = streams[meta.trailerId];
+            delete meta.videoIds;
+            delete meta.trailerId;
+        }
 
-    return meta;
-};
+        return meta;
+    };
 
-const getStreams = (type, videoId) => {
-    const metas = getAllMetas();
-    const videos = getAllVideos();
-    const streams = getAllStreams();
-    const meta = Object.values(metas).some((meta) => {
-        return meta.type === type && meta.videoIds.includes(videoId);
-    });
-    if (meta) {
-        return videos[videoId].streamIds.map((streamId) => {
-            return streams[streamId];
+    const getStreams = (type, videoId) => {
+        const metas = pullAllMetas(port);
+        const videos = pullAllVideos(port);
+        const streams = pullAllStreams(port);
+        const meta = Object.values(metas).some((meta) => {
+            return meta.type === type && meta.videoIds.includes(videoId);
         });
-    }
+        if (meta) {
+            return videos[videoId].streamIds.map((streamId) => {
+                return streams[streamId];
+            });
+        }
 
-    return [];
+        return [];
+    };
+
+    self.getMeta = getMeta;
+    self.getStreams = getStreams;
 };
 
-module.exports = {
-    getMeta,
-    getStreams
-};
+module.exports = DbContext;
