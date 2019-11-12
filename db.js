@@ -38,6 +38,11 @@ const pullAllMetas = (port) => ({
                 "url": "https://www.imdb.com/title/tt1254207"
             },
             {
+                "name": "Share",
+                "category": "share",
+                "url": "https://peach.blender.org/"
+            },
+            {
                 "name": "Official website",
                 "category": "other",
                 "url": "https://peach.blender.org/"
