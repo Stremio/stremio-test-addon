@@ -8,7 +8,7 @@ const pullAllMetas = (port) => ({
         "logo": `http://127.0.0.1:${port}/assets/logo.png`,
         "description": `Pen test movie 1 description ${port}`,
         "releaseInfo": "2019-",
-        "runtime": "10:00",
+        "runtime": "12 min",
         "released": "2019-11-08T07:57:48.271Z",
         "posterShape": "square",
         "externalUrls": [
