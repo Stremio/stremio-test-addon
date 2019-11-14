@@ -21,7 +21,7 @@ const addon = new AddonBuilder({
     description: 'Addon for pentest the stremio addons system',
     version: '1.0.0',
     resources: ['meta', 'stream'],
-    types: ['movie'],
+    types: ['movie', 'series'],
     catalogs: [],
     idPrefixes: ['pt']
 });
