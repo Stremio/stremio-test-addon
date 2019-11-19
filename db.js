@@ -11,7 +11,7 @@ const pullAllMetas = (port) => ({
         "runtime": "12 min",
         "released": "2019-11-08T07:57:48.271Z",
         "posterShape": "square",
-        "externalUrls": [
+        "links": [
             {
                 "name": "Squirrel",
                 "category": "actors",
@@ -35,7 +35,7 @@ const pullAllMetas = (port) => ({
             {
                 "name": "6.5 / 10",
                 "category": "imdb",
-                "url": "https://www.imdb.com/title/tt1254207"
+                "url": "tt1254207"
             },
             {
                 "name": "Share",
@@ -46,6 +46,11 @@ const pullAllMetas = (port) => ({
                 "name": "Official website",
                 "category": "other",
                 "url": "https://peach.blender.org/"
+            },
+            {
+                "name": "Intro",
+                "category": "other",
+                "url": "stremio:///intro"
             }
         ],
         "videoIds": ["pt1v1", "pt1v2", "pt1v3"],
