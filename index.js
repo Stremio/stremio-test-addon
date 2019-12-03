@@ -20,10 +20,53 @@ const addon = new AddonBuilder({
     name: 'Stremio\'s pen test addon',
     description: 'Addon for pentest the stremio addons system',
     version: '1.0.0',
-    resources: ['meta', 'stream'],
+    resources: ['catalog', 'meta', 'stream'],
     types: ['movie', 'series'],
-    catalogs: [],
-    idPrefixes: ['pt']
+    idPrefixes: ['pt'],
+    catalogs: [
+        {
+            type: 'movie',
+            id: 'test',
+            name: 'MovieTestCatalog',
+            extra: [
+                {
+                    name: 'genre',
+                    isRequired: false,
+                    options: Array(30).fill(null).map((_, index) => `genre_${index}`),
+                    optionsLimit: 3
+                },
+                {
+                    name: 'year',
+                    isRequired: false,
+                    options: Array(10).fill(null).map((_, index) => `${1990 + index}`),
+                    optionsLimit: 1
+                },
+                {
+                    name: 'imdb rating',
+                    isRequired: false,
+                    options: Array(10).fill(null).map((_, index) => `${index} - ${1 + index}`),
+                    optionsLimit: 2
+                },
+                {
+                    name: 'first letter',
+                    isRequired: false,
+                    options: Array(26).fill(null).map((_, index) => String.fromCharCode(97 + index)),
+                    optionsLimit: 1
+                },
+                {
+                    name: 'language',
+                    isRequired: false,
+                    options: ['english', 'bulgarian'],
+                    optionsLimit: 1
+                },
+                {
+                    name: 'skip',
+                    isRequired: false,
+                    optionsLimit: 1
+                }
+            ]
+        }
+    ]
 });
 const db = new DbContext(port);
 const createPenTestHandler = (handler) => {
@@ -43,6 +86,18 @@ const createPenTestHandler = (handler) => {
         });
     };
 };
+
+addon.defineCatalogHandler(createPenTestHandler(({ type, id, extra }) => {
+    const metas = db.getMetasByType(type)
+        .slice(0, 1)
+        .map((meta) => {
+            meta.description += JSON.stringify({ type, id, extra });
+            return meta;
+        })
+        .concat(Array(99).fill(null))
+        .map((_, __, metas) => metas[0]);
+    return Promise.resolve({ metas });
+}));
 
 addon.defineMetaHandler(createPenTestHandler(({ type, id }) => {
     const meta = db.getMeta(type, id);

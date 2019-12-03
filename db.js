@@ -170,6 +170,13 @@ const pullAllStreams = (port) => ({
 function DbContext(port) {
     const self = this;
 
+    const getMetasByType = (type) => {
+        const metas = pullAllMetas(port);
+        return Object.values(metas)
+            .filter((meta) => meta.type === type)
+            .map(({ id }) => getMeta(type, id));
+    };
+
     const getMeta = (type, metaId) => {
         const metas = pullAllMetas(port);
         const videos = pullAllVideos(port);
@@ -208,6 +215,7 @@ function DbContext(port) {
         return [];
     };
 
+    self.getMetasByType = getMetasByType;
     self.getMeta = getMeta;
     self.getStreams = getStreams;
 };
