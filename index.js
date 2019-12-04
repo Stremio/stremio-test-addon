@@ -63,6 +63,11 @@ const addon = new AddonBuilder({
                     name: 'skip',
                     isRequired: false,
                     optionsLimit: 1
+                },
+                {
+                    name: 'search',
+                    isRequired: false,
+                    optionsLimit: 1
                 }
             ]
         }
