@@ -99,7 +99,7 @@ addon.defineCatalogHandler(createPenTestHandler(({ type, id, extra }) => {
             meta.description += JSON.stringify({ type, id, extra });
             return meta;
         })
-        .concat(Array(99).fill(null))
+        .concat(Array(parseInt(extra.skip) > 500 ? 9 : 99).fill(null))
         .map((_, __, metas) => metas[0]);
     return Promise.resolve({ metas });
 }));
