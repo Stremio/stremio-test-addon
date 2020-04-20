@@ -130,7 +130,12 @@ const pullAllStreams = (port) => ({
         "id": "pt1v1s1",
         "title": `Pen test movie 1 video 1 stream 1 ${port}`,
         "thumbnail": `http://127.0.0.1:${port}/assets/poster.jpg`,
-        "url": `http://127.0.0.1:${port}/assets/video.mp4`
+        "url": `http://127.0.0.1:${port}/assets/video.mp4`,
+        "subtitles": [{
+            id: "asd1",
+            lang: "eng",
+            url: "https://raw.githubusercontent.com/nklhrstv/test-resources/master/1.vtt"
+        }]
     },
     "pt1v2s1": {
         "id": "pt1v2s1",
