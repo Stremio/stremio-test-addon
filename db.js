@@ -11,6 +11,9 @@ const pullAllMetas = (port) => ({
         "runtime": "12 min",
         "released": "2019-11-08T07:57:48.271Z",
         "posterShape": "square",
+        "behaviorHints": {
+            "defaultVideoId": "pt1v1"
+        },
         "links": [
             {
                 "name": "Squirrel",
