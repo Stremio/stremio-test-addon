@@ -16,13 +16,13 @@ const errorChance = argv.includes('--error') ?
     0;
 
 const addon = new AddonBuilder({
-    id: 'com.stremio.ptaddon',
-    name: 'Stremio\'s pen test addon',
-    description: 'Addon for pentest the stremio addons system',
+    id: 'com.stremio.taddon',
+    name: 'Stremio\'s test addon',
+    description: 'Addon for test the stremio addons system',
     version: '1.0.0',
     resources: ['catalog', 'meta', 'stream'],
     types: ['movie', 'series'],
-    idPrefixes: ['pt', 'tt'],
+    idPrefixes: ['st', 'tt'],
     catalogs: [
         {
             type: 'series',
@@ -85,7 +85,7 @@ const addon = new AddonBuilder({
     ]
 });
 const db = new DbContext(port);
-const createPenTestHandler = (handler) => {
+const createTestHandler = (handler) => {
     return (args) => {
         return handler(args).then((response) => {
             return new Promise((resolve, reject) => {
@@ -103,7 +103,7 @@ const createPenTestHandler = (handler) => {
     };
 };
 
-addon.defineCatalogHandler(createPenTestHandler(({ type, id, extra }) => {
+addon.defineCatalogHandler(createTestHandler(({ type, id, extra }) => {
     const metas = db.getMetasByType(type)
         .slice(0, 1)
         .map((meta) => {
@@ -119,7 +119,7 @@ addon.defineCatalogHandler(createPenTestHandler(({ type, id, extra }) => {
     });
 }));
 
-addon.defineMetaHandler(createPenTestHandler(({ type, id }) => {
+addon.defineMetaHandler(createTestHandler(({ type, id }) => {
     const meta = db.getMeta(type, id);
     if (meta) {
         return Promise.resolve({ meta });
@@ -128,7 +128,7 @@ addon.defineMetaHandler(createPenTestHandler(({ type, id }) => {
     return Promise.reject();
 }));
 
-addon.defineStreamHandler(createPenTestHandler(({ type, id }) => {
+addon.defineStreamHandler(createTestHandler(({ type, id }) => {
     const streams = db.getStreams(type, id);
     if (streams) {
         return Promise.resolve({ streams });
