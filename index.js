@@ -113,9 +113,7 @@ addon.defineCatalogHandler(createTestHandler(({ type, id, extra }) => {
         .concat(Array(parseInt(extra.skip) > 500 ? 9 : 99).fill(null))
         .map((_, index, metas) => ({ ...metas[0], name: `${metas[0].name} ${index}` }));
     return Promise.resolve({
-        [id === 'last-videos' ? 'metasDetailed' : 'metas']: metas,
-        skip: parseInt(extra.skip, 10) || 0,
-        hasMore: true
+        [id === 'last-videos' ? 'metasDetailed' : 'metas']: metas
     });
 }));
 
