@@ -118,7 +118,7 @@ addon.defineCatalogHandler(createTestHandler(({ type, id, extra }) => {
 }));
 
 addon.defineMetaHandler(createTestHandler(({ type, id }) => {
-    const meta = db.getMeta(type, id);
+    const meta = db.getMeta(type, id.slice(0, 3));
     if (meta) {
         return Promise.resolve({ meta });
     }
