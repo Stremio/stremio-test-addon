@@ -1,18 +1,18 @@
 const pullAllMetas = (port) => ({
-    "pt1": {
-        "id": "pt1",
+    "st1": {
+        "id": "st1",
         "type": "movie",
-        "name": `Pen test movie 1 ${port}`,
+        "name": `Test movie 1 ${port}`,
         "poster": `http://127.0.0.1:${port}/assets/poster.jpg`,
         "background": `http://127.0.0.1:${port}/assets/background.png`,
         "logo": `http://127.0.0.1:${port}/assets/logo.png`,
-        "description": `Pen test movie 1 description ${port}`,
+        "description": `Test movie 1 description ${port}`,
         "releaseInfo": "2019-",
         "runtime": "12 min",
         "released": "2019-11-08T07:57:48.271Z",
         "posterShape": "square",
         "behaviorHints": {
-            "defaultVideoId": "pt1v1"
+            "defaultVideoId": "st1v1"
         },
         "links": [
             {
@@ -56,120 +56,120 @@ const pullAllMetas = (port) => ({
                 "url": "stremio:///intro"
             }
         ],
-        "videoIds": ["pt1v1", "pt1v2", "pt1v3"],
-        "trailerId": "pt1t1",
+        "videoIds": ["st1v1", "st1v2", "st1v3"],
+        "trailerId": "st1t1",
     },
-    "pt2": {
-        "id": "pt2",
+    "st2": {
+        "id": "st2",
         "type": "series",
-        "name": `Pen test series 2 ${port}`,
+        "name": `Test series 2 ${port}`,
         "poster": `http://127.0.0.1:${port}/assets/poster.jpg`,
         "background": `http://127.0.0.1:${port}/assets/background.png`,
         "logo": `http://127.0.0.1:${port}/assets/logo.png`,
-        "description": `Pen test series 2 description ${port}`,
+        "description": `Test series 2 description ${port}`,
         "releaseInfo": "2017-",
         "runtime": "19 min",
         "released": "2019-11-08T07:57:48.271Z",
         "posterShape": "poster",
-        "videoIds": ["pt2v1", "pt2v2", "pt2v3"],
+        "videoIds": ["st2v1", "st2v2", "st2v3"],
     }
 });
 
 const pullAllVideos = (port) => ({
-    "pt1v1": {
-        "id": "pt1v1",
-        "title": `Pen test movie 1 video 1 ${port}`,
+    "st1v1": {
+        "id": "st1v1",
+        "title": `Test movie 1 video 1 ${port}`,
         "thumbnail": `http://127.0.0.1:${port}/assets/poster.jpg`,
         "released": "2019-11-08T07:57:48.271Z",
-        "overview": `Pen test movie 1 video 1 overview ${port}`,
-        "streamIds": ["pt1v1s1"]
+        "overview": `Test movie 1 video 1 overview ${port}`,
+        "streamIds": ["st1v1s1"]
     },
-    "pt1v2": {
-        "id": "pt1v2",
-        "title": `Pen test movie 1 video 2 ${port}`,
+    "st1v2": {
+        "id": "st1v2",
+        "title": `Test movie 1 video 2 ${port}`,
         "thumbnail": `http://127.0.0.1:${port}/assets/non-existing-thumbnail.jpg`,
         "released": "3333-11-08T07:57:48.271Z",
-        "overview": `Pen test movie 1 video 2 (broken thumbnail) ${port}`,
-        "streamIds": ["pt1v2s1"]
+        "overview": `Test movie 1 video 2 (broken thumbnail) ${port}`,
+        "streamIds": ["st1v2s1"]
     },
-    "pt1v3": {
-        "id": "pt1v3",
-        "title": `Pen test movie 1 video 3 ${port}`,
+    "st1v3": {
+        "id": "st1v3",
+        "title": `Test movie 1 video 3 ${port}`,
         "released": "2019-11-08T07:57:48.271Z",
-        "overview": `Pen test movie 1 video 3 (no thumbnail) ${port}`,
-        "streamIds": ["pt1v3s1"]
+        "overview": `Test movie 1 video 3 (no thumbnail) ${port}`,
+        "streamIds": ["st1v3s1"]
     },
-    "pt2v1": {
-        "id": "pt2v1",
-        "title": `Pen test series 2 video 1 ${port}`,
+    "st2v1": {
+        "id": "st2v1",
+        "title": `Test series 2 video 1 ${port}`,
         "released": "2019-11-08T07:57:48.271Z",
-        "overview": `Pen test series 2 video 1 ${port}`,
+        "overview": `Test series 2 video 1 ${port}`,
         "season": 1,
         "episode": 1,
-        "streamIds": ["pt2v1s1"]
+        "streamIds": ["st2v1s1"]
     },
-    "pt2v2": {
-        "id": "pt2v2",
-        "title": `Pen test series 2 video 2 ${port}`,
+    "st2v2": {
+        "id": "st2v2",
+        "title": `Test series 2 video 2 ${port}`,
         "released": "2019-11-08T07:57:48.271Z",
-        "overview": `Pen test series 2 video 2 ${port}`,
+        "overview": `Test series 2 video 2 ${port}`,
         "season": 2,
         "episode": 1,
-        "streamIds": ["pt2v2s1"]
+        "streamIds": ["st2v2s1"]
     },
-    "pt2v3": {
-        "id": "pt2v3",
-        "title": `Pen test series 2 video 3 ${port}`,
+    "st2v3": {
+        "id": "st2v3",
+        "title": `Test series 2 video 3 ${port}`,
         "released": "2019-11-08T07:57:48.271Z",
-        "overview": `Pen test series 2 video 3 ${port}`,
+        "overview": `Test series 2 video 3 ${port}`,
         "season": 3,
         "episode": 1,
-        "streamIds": ["pt2v3s1"]
+        "streamIds": ["st2v3s1"]
     }
 });
 
 const pullAllStreams = (port) => ({
-    "pt1v1s1": {
-        "id": "pt1v1s1",
-        "title": `Pen test movie 1 video 1 stream 1 ${port}`,
+    "st1v1s1": {
+        "id": "st1v1s1",
+        "title": `Test movie 1 video 1 stream 1 ${port}`,
         "thumbnail": `http://127.0.0.1:${port}/assets/poster.jpg`,
         "url": `http://127.0.0.1:${port}/assets/video.mp4`,
         "subtitles": [{
             id: "asd1",
             lang: "eng",
-            url: "https://raw.githubusercontent.com/nklhrstv/test-resources/master/1.vtt"
+            url: `http://127.0.0.1:${port}/assets/subtitles.vtt`
         }]
     },
-    "pt1v2s1": {
-        "id": "pt1v2s1",
-        "title": `Pen test movie 1 video 2 stream 1 ${port}`,
+    "st1v2s1": {
+        "id": "st1v2s1",
+        "title": `Test movie 1 video 2 stream 1 ${port}`,
         "thumbnail": `http://127.0.0.1:${port}/assets/poster.jpg`,
         "url": `http://127.0.0.1:${port}/assets/video.mp4`
     },
-    "pt1v3s1": {
-        "id": "pt1v3s1",
-        "title": `Pen test movie 1 video 3 stream 1 ${port}`,
+    "st1v3s1": {
+        "id": "st1v3s1",
+        "title": `Test movie 1 video 3 stream 1 ${port}`,
         "thumbnail": `http://127.0.0.1:${port}/assets/poster.jpg`,
         "url": `http://127.0.0.1:${port}/assets/video.mp4`
     },
-    "pt2v1s1": {
-        "id": "pt2v1s1",
-        "title": `Pen test series 2 video 1 stream 1 ${port}`,
+    "st2v1s1": {
+        "id": "st2v1s1",
+        "title": `Test series 2 video 1 stream 1 ${port}`,
         "url": `http://127.0.0.1:${port}/assets/video.mp4`
     },
-    "pt2v2s1": {
-        "id": "pt2v2s1",
-        "title": `Pen test series 2 video 2 stream 1 ${port}`,
+    "st2v2s1": {
+        "id": "st2v2s1",
+        "title": `Test series 2 video 2 stream 1 ${port}`,
         "url": `http://127.0.0.1:${port}/assets/video.mp4`
     },
-    "pt2v3s1": {
-        "id": "pt2v3s1",
-        "title": `Pen test series 2 video 3 stream 1 ${port}`,
+    "st2v3s1": {
+        "id": "st2v3s1",
+        "title": `Test series 2 video 3 stream 1 ${port}`,
         "url": `http://127.0.0.1:${port}/assets/video.mp4`
     },
-    "pt1t1": {
-        "id": "pt1t1",
-        "title": `Pen test movie 1 trailer 1 ${port}`,
+    "st1t1": {
+        "id": "st1t1",
+        "title": `Test movie 1 trailer 1 ${port}`,
         "thumbnail": `http://127.0.0.1:${port}/assets/poster.jpg`,
         "url": `http://127.0.0.1:${port}/assets/video.mp4`
     }
