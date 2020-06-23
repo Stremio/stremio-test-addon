@@ -91,7 +91,7 @@ const createTestHandler = (handler) => {
             return new Promise((resolve, reject) => {
                 const delay = Math.random() * maxRequestDelay;
                 setTimeout(() => {
-                    const error = Math.random() <= errorChance;
+                    const error = Math.random() < errorChance;
                     if (error) {
                         reject();
                     } else {
