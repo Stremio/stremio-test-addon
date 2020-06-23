@@ -2,7 +2,7 @@
 pids=()
 for port in {7000..7004} 
 do 
-    (yarn start --delay 1 --error 0 --port $port) & 
+    (yarn start --delay 5000 --error 0.5 --port $port) & 
     pids+=($!)
 done
 trap 'kill ${pids[@]}' EXIT
