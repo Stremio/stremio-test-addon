@@ -8,6 +8,7 @@
         "development": "DELAY=0.5 ERROR=0.5 node index.js"
     },
     "dependencies": {
+        "faker": "5.1.0",
         "stremio-addon-sdk": "1.4.0"
     }
 }
