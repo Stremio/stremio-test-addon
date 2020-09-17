@@ -12,7 +12,7 @@ const addon = new AddonBuilder({
     version: '1.0.0',
     resources: ['catalog', 'meta', 'stream'],
     types: ['movie', 'series'],
-    idPrefixes: ['st'],
+    idPrefixes: ['test:'],
     catalogs: [
         {
             type: 'series',
