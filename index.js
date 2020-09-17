@@ -8,7 +8,7 @@ const ERROR = parseFloat(process.env.ERROR || 0);
 const addon = new AddonBuilder({
     id: 'com.stremio.test',
     name: 'Stremio\'s test addon',
-    description: 'Addon for test the stremio addons system',
+    description: 'Addon for testing the stremio clients',
     version: '1.0.0',
     resources: ['catalog', 'meta', 'stream'],
     types: ['movie', 'series'],
