@@ -4,7 +4,8 @@
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-        "start": "node index.js"
+        "start": "node index.js",
+        "development": "DELAY=0.5 ERROR=0.5 node index.js"
     },
     "dependencies": {
         "stremio-addon-sdk": "1.4.0"

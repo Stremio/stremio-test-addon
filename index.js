@@ -1,9 +1,9 @@
 const { addonBuilder: AddonBuilder, serveHTTP: startHttpServer } = require('stremio-addon-sdk');
 const DbContext = require('./db');
 
-const PORT = process.env.PORT || 7000;
-const DELAY = process.env.DELAY || 0;
-const ERROR_COEF = process.env.ERROR_COEF || 0;
+const PORT = parseInt(process.env.PORT || 7000);
+const DELAY = parseFloat(process.env.DELAY || 0);
+const ERROR_COEF = parseFloat(process.env.ERROR || 0);
 
 const addon = new AddonBuilder({
     id: 'com.stremio.taddon',
