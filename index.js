@@ -125,6 +125,6 @@ addon.defineStreamHandler(createTestHandler(({ type, id }) => {
 }));
 
 startHttpServer(addon.getInterface(), {
-    PORT,
+    port: PORT,
     static: '/assets'
 });
