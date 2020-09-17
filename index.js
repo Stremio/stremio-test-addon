@@ -16,13 +16,14 @@ const addon = new AddonBuilder({
     idPrefixes: ['test:'],
     catalogs: [
         {
-            type: 'series',
             id: 'last-videos',
+            type: 'series',
             name: 'Last videos',
             extra: [
                 {
                     name: 'lastVideosIds',
-                    isRequired: true
+                    isRequired: true,
+                    optionsLimit: 500
                 }
             ]
         },
