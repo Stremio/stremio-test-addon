@@ -6,6 +6,7 @@ const PORT = parseInt(process.env.PORT || 7000);
 const DELAY = parseFloat(process.env.DELAY || 0);
 const ERROR = parseFloat(process.env.ERROR || 0);
 
+const idPrefix = 'test:';
 const genres = Array(30).fill(null).map(() => faker.lorem.word());
 const years = Array(15).fill(null).map((_, index) => `${2020 - index}`);
 const countries = Array(20).fill(null).map(() => faker.address.country());
@@ -17,7 +18,7 @@ const addon = new AddonBuilder({
     version: '1.0.0',
     resources: ['catalog', 'meta', 'stream'],
     types: ['movie', 'series'],
-    idPrefixes: ['test:'],
+    idPrefixes: [idPrefix],
     catalogs: [
         {
             id: 'test-catalog',
