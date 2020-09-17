@@ -6,6 +6,10 @@ const PORT = parseInt(process.env.PORT || 7000);
 const DELAY = parseFloat(process.env.DELAY || 0);
 const ERROR = parseFloat(process.env.ERROR || 0);
 
+const genres = Array(30).fill(null).map(() => faker.lorem.word());
+const years = Array(15).fill(null).map((_, index) => `${2020 - index}`);
+const countries = Array(20).fill(null).map(() => faker.address.country());
+
 const addon = new AddonBuilder({
     id: 'com.stremio.test',
     name: 'Stremio\'s test addon',
@@ -16,18 +20,6 @@ const addon = new AddonBuilder({
     idPrefixes: ['test:'],
     catalogs: [
         {
-            id: 'last-videos',
-            type: 'series',
-            name: 'Last videos',
-            extra: [
-                {
-                    name: 'lastVideosIds',
-                    isRequired: true,
-                    optionsLimit: 500
-                }
-            ]
-        },
-        {
             id: 'test-catalog',
             type: 'movie',
             name: 'Test Catalog',
@@ -35,31 +27,19 @@ const addon = new AddonBuilder({
                 {
                     name: 'genre',
                     isRequired: false,
-                    options: Array(30).fill(null).map(() => faker.lorem.word()),
+                    options: genres,
                     optionsLimit: 3
                 },
                 {
                     name: 'year',
                     isRequired: false,
-                    options: Array(15).fill(null).map((_, index) => `${2020 - index}`),
-                    optionsLimit: 1
-                },
-                {
-                    name: 'IMDb rating',
-                    isRequired: false,
-                    options: Array(10).fill(null).map((_, index) => `${index} - ${index + 1}`),
-                    optionsLimit: 2
-                },
-                {
-                    name: 'first letter',
-                    isRequired: false,
-                    options: Array(26).fill(null).map((_, index) => String.fromCharCode(97 + index)),
+                    options: years,
                     optionsLimit: 1
                 },
                 {
                     name: 'country',
                     isRequired: false,
-                    options: Array(20).fill(null).map(() => faker.address.country()),
+                    options: countries,
                     optionsLimit: 1
                 },
                 {
