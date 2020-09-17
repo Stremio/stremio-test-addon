@@ -6,7 +6,7 @@ const DELAY = parseFloat(process.env.DELAY || 0);
 const ERROR = parseFloat(process.env.ERROR || 0);
 
 const addon = new AddonBuilder({
-    id: 'com.stremio.taddon',
+    id: 'com.stremio.test',
     name: 'Stremio\'s test addon',
     description: 'Addon for test the stremio addons system',
     version: '1.0.0',
