@@ -26,9 +26,9 @@ const addon = new AddonBuilder({
             ]
         },
         {
+            id: 'test-catalog',
             type: 'movie',
-            id: 'test',
-            name: 'MovieTestCatalog',
+            name: 'Test Catalog',
             extra: [
                 {
                     name: 'genre',
