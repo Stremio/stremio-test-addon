@@ -3,7 +3,7 @@ const DbContext = require('./db');
 
 const PORT = parseInt(process.env.PORT || 7000);
 const DELAY = parseFloat(process.env.DELAY || 0);
-const ERROR_COEF = parseFloat(process.env.ERROR || 0);
+const ERROR = parseFloat(process.env.ERROR || 0);
 
 const addon = new AddonBuilder({
     id: 'com.stremio.taddon',
@@ -80,7 +80,7 @@ const createTestHandler = (handler) => {
         return handler(args).then((response) => {
             return new Promise((resolve, reject) => {
                 setTimeout(() => {
-                    if (Math.random() < ERROR_COEF) {
+                    if (Math.random() < ERROR) {
                         reject();
                     } else {
                         resolve(response);
