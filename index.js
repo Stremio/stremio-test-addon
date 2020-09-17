@@ -1,19 +1,9 @@
 const { addonBuilder: AddonBuilder, serveHTTP: startHttpServer } = require('stremio-addon-sdk');
 const DbContext = require('./db');
 
-const argv = process.argv.slice(2);
-const port = argv.includes('--port') ?
-    parseInt(argv[argv.indexOf('--port') + 1])
-    :
-    7000;
-const maxRequestDelay = argv.includes('--delay') ?
-    parseInt(argv[argv.indexOf('--delay') + 1])
-    :
-    1000;
-const errorChance = argv.includes('--error') ?
-    parseFloat(argv[argv.indexOf('--error') + 1])
-    :
-    0;
+const PORT = process.env.PORT || 7000;
+const DELAY = process.env.DELAY || 0;
+const ERROR_COEF = process.env.ERROR_COEF || 0;
 
 const addon = new AddonBuilder({
     id: 'com.stremio.taddon',
@@ -84,20 +74,18 @@ const addon = new AddonBuilder({
         }
     ]
 });
-const db = new DbContext(port);
+const db = new DbContext(PORT);
 const createTestHandler = (handler) => {
     return (args) => {
         return handler(args).then((response) => {
             return new Promise((resolve, reject) => {
-                const delay = Math.random() * maxRequestDelay;
                 setTimeout(() => {
-                    const error = Math.random() < errorChance;
-                    if (error) {
+                    if (Math.random() < ERROR_COEF) {
                         reject();
                     } else {
                         resolve(response);
                     }
-                }, delay);
+                }, Math.random() * DELAY);
             });
         });
     };
@@ -136,6 +124,6 @@ addon.defineStreamHandler(createTestHandler(({ type, id }) => {
 }));
 
 startHttpServer(addon.getInterface(), {
-    port,
+    PORT,
     static: '/assets'
 });
