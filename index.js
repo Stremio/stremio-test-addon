@@ -1,4 +1,5 @@
 const { addonBuilder: AddonBuilder, serveHTTP: startHttpServer } = require('stremio-addon-sdk');
+const faker = require('faker');
 const DbContext = require('./db');
 
 const PORT = parseInt(process.env.PORT || 7000);
@@ -33,19 +34,19 @@ const addon = new AddonBuilder({
                 {
                     name: 'genre',
                     isRequired: false,
-                    options: Array(30).fill(null).map((_, index) => `genre_${index}`),
+                    options: Array(30).fill(null).map(() => faker.lorem.word()),
                     optionsLimit: 3
                 },
                 {
                     name: 'year',
                     isRequired: false,
-                    options: Array(10).fill(null).map((_, index) => `${1990 + index}`),
+                    options: Array(15).fill(null).map((_, index) => `${2020 - index}`),
                     optionsLimit: 1
                 },
                 {
-                    name: 'imdb rating',
+                    name: 'IMDb rating',
                     isRequired: false,
-                    options: Array(10).fill(null).map((_, index) => `${index} - ${1 + index}`),
+                    options: Array(10).fill(null).map((_, index) => `${index} - ${index + 1}`),
                     optionsLimit: 2
                 },
                 {
@@ -55,9 +56,9 @@ const addon = new AddonBuilder({
                     optionsLimit: 1
                 },
                 {
-                    name: 'language',
+                    name: 'country',
                     isRequired: false,
-                    options: ['english', 'bulgarian'],
+                    options: Array(20).fill(null).map(() => faker.address.country()),
                     optionsLimit: 1
                 },
                 {
