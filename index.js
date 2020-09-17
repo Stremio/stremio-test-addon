@@ -85,7 +85,7 @@ const createTestHandler = (handler) => {
                     } else {
                         resolve(response);
                     }
-                }, Math.random() * DELAY);
+                }, DELAY);
             });
         });
     };
