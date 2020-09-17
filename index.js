@@ -53,6 +53,41 @@ const addon = new AddonBuilder({
                     optionsLimit: 1
                 }
             ]
+        },
+        {
+            id: 'test-catalog',
+            type: 'series',
+            name: 'Test Catalog',
+            extra: [
+                {
+                    name: 'genre',
+                    isRequired: false,
+                    options: genres,
+                    optionsLimit: 3
+                },
+                {
+                    name: 'year',
+                    isRequired: false,
+                    options: years,
+                    optionsLimit: 1
+                },
+                {
+                    name: 'country',
+                    isRequired: false,
+                    options: countries,
+                    optionsLimit: 1
+                },
+                {
+                    name: 'skip',
+                    isRequired: false,
+                    optionsLimit: 1
+                },
+                {
+                    name: 'search',
+                    isRequired: false,
+                    optionsLimit: 1
+                }
+            ]
         }
     ]
 });
