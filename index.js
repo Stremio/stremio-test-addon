@@ -52,7 +52,7 @@ const video = (season, episode) => ({
     overview: pick([null, faker.lorem.paragraph(), faker.lorem.paragraphs()]),
     thumbnail: pick([null, faker.image.image()]),
     streams: pick([[], [stream(), stream(), stream(), stream()]]),
-    traileStreams: pick([[], [stream()]]),
+    trailerStreams: pick([[], [stream()]]),
 });
 
 const internalLink = (category) => {
@@ -83,8 +83,8 @@ const metaItem = (type) => ({
     released: pick([null, faker.date.past()]),
     posterShape: pick([null, 'poster', 'square', 'landscape', 'invalid']),
     videos: pick([[], [video(1, 1), video(1, 2), video(1, 3), video(2, 1), video(2, 2), video(2, 3), video(5, 1), video(5, 2), video(5, 3)]]),
-    links: pick([[], [externalLink('Share me', 'share'), externalLink('16 / 10', 'imdb'), Array(5).fill(null).map(() => internalLink('director')), Array(5).fill(null).map(() => internalLink('cast'))]]),
-    traileStreams: pick([[], [stream()]]),
+    links: pick([[], [externalLink('Share me', 'share'), externalLink('16 / 10', 'imdb'), ...Array(5).fill(null).map(() => internalLink('director')), ...Array(5).fill(null).map(() => internalLink('cast'))]]),
+    trailerStreams: pick([[], [stream()]]),
     behaviorHints: {
         defaultVideoId: type === 'movie' ? `${ID_PREFIX}${faker.random.number()}` : null,
         hasScheduledVideos: type === 'series'
