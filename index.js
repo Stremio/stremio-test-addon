@@ -87,7 +87,7 @@ const metaItem = (type) => ({
     releaseInfo: pick([null, faker.date.past().getFullYear().toString() + '-']),
     runtime: pick([null, faker.random.number() + 'min']),
     released: pick([null, faker.date.past()]),
-    posterShape: pick([null, 'poster', 'square', 'landscape', 'invalid']),
+    posterShape: pick(['poster', 'square', 'landscape', 'invalid']),
     videos: pick([[], [video(1, 1), video(1, 2), video(1, 3), video(2, 1), video(2, 2), video(2, 3), video(5, 1), video(5, 2), video(5, 3)]]),
     links: pick([[], [metaExtension(), metaExtension(), externalLink('Share me', 'share'), externalLink('16 / 10', 'imdb'), ...Array(5).fill(null).map(() => internalLink('director')), ...Array(5).fill(null).map(() => internalLink('cast'))]]),
     trailerStreams: pick([[], [stream()]]),
