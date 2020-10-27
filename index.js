@@ -71,7 +71,7 @@ const externalLink = (name, category) => ({
 });
 
 const metaExtension = () => ({
-    name: 'extension name',
+    name: 'Test extension',
     category: 'meta',
     url: `${HOST}/assets/meta.html`
 });
