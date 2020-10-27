@@ -4,7 +4,7 @@ const faker = require('faker');
 const PORT = parseInt(process.env.PORT || 7000);
 const DELAY = parseFloat(process.env.DELAY || 0);
 const ERROR = parseFloat(process.env.ERROR || 0);
-const HOST = process.env.HEROKU_APP_NAME ? `https://${process.env.HEROKU_APP_NAME}.herokuapp.com` : 'http://localhost';
+const HOST = process.env.HEROKU_APP_NAME ? `https://${process.env.HEROKU_APP_NAME}.herokuapp.com` : `http://localhost:${PORT}`;
 
 const ID_PREFIX = 'test:';
 const STREAM_SOURCES = [
