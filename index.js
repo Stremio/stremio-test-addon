@@ -15,7 +15,7 @@ const STREAM_SOURCES = [
 ];
 
 const pick = (items) => {
-    return items[Math.floor((Math.random() * items.length) + 1)];
+    return items[Math.floor(Math.random() * items.length)];
 };
 
 const genres = () => {
