@@ -61,7 +61,7 @@ const internalLink = (category) => {
     return {
         name,
         category,
-        url: `stremio:///search?q=${name}`
+        url: `stremio:///search?search=${name}`
     };
 };
 
