@@ -13,6 +13,7 @@ const STREAM_SOURCES = [
     { externalUrl: 'https://www.youtube.com/watch?v=YE7VzlLtp-4' },
     { infoHash: 'f84b51f0d2c3455ab5dabb6643b4340234cd036e' }
 ];
+const LANGUAGES = ['eng', 'bul', 'deu', 'rus', 'spa']
 
 const pick = (items) => {
     return items[Math.floor(Math.random() * items.length)];
@@ -32,7 +33,7 @@ const countries = () => {
 
 const subtitles = () => ({
     id: `${ID_PREFIX}${faker.random.number()}`,
-    lang: 'eng',
+    lang: pick(LANGUAGES),
     url: `${HOST}/assets/subtitles.vtt`
 });
 
@@ -102,7 +103,7 @@ const addon = new AddonBuilder({
     name: 'Stremio\'s test addon',
     description: 'Addon for testing the stremio clients',
     version: '1.0.0',
-    resources: ['catalog', 'meta', 'stream'],
+    resources: ['catalog', 'meta', 'stream', 'subtitles'],
     types: ['movie', 'series'],
     idPrefixes: [ID_PREFIX],
     catalogs: [
@@ -233,6 +234,10 @@ addon.defineMetaHandler(createTestHandler(({ type, id }) => {
 
 addon.defineStreamHandler(createTestHandler(() => {
     return Promise.resolve({ streams: pick([[], [stream(), stream(), stream(), stream()]]) });
+}));
+
+addon.defineSubtitlesHandler(createTestHandler(() => {
+    return Promise.resolve({ subtitles: pick([[], [subtitles(), subtitles(), subtitles(), subtitles()]]) });
 }));
 
 startHttpServer(addon.getInterface(), {
